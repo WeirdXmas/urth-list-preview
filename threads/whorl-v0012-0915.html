@@ -1,0 +1,144 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Voyage of the Whorl: Calculations of Thrust, Distance and Peak Velocity · Urth List Index</title><meta name="robots" content="noindex, nofollow">
+<link rel="stylesheet" href="../assets/style.css">
+</head><body>
+<div class="private-banner">Temporary preview of the Urth List Index, shared privately. Please do not pass the link on.</div>
+<header class="site" data-pagefind-ignore><a class="brand" href="../index.html">Urth List Index</a><nav><a href="../index.html">Home</a><a href="../years/index.html">Years</a><a href="../people/index.html">People</a><a href="../names/index.html">Names</a><a href="../chapters/index.html">Chapters</a><a href="../themes/index.html">Themes</a><a href="../theories/index.html">Theories</a><a href="../search.html">Search</a><a href="../about.html">About</a></nav></header>
+<main data-pagefind-body>
+<h1 data-pagefind-meta="title">Voyage of the Whorl: Calculations of Thrust, Distance and Peak Velocity</h1>
+<p class="meta">Whorl list · 1 messages · 2001-09-04 to 2001-09-04</p>
+<span data-pagefind-filter="year" hidden>2001</span><span data-pagefind-filter="list" hidden>whorl</span><span data-pagefind-filter="poster" hidden>Talarican</span>
+<section class="msg"><h3 id="whorl-v0012-0915"><span class="date">2001-09-04</span> <a href="../people/talarican.html">Talarican</a> <a class="self" href="#whorl-v0012-0915" title="link to this message" data-pagefind-ignore>#</a></h3><div class="card" data-pagefind-ignore>Calculates how fast the starcrosser Whorl must accelerate and decelerate under a half-and-half ramjet-style profile to cover the distance to its destination in the Long Sun books within a 550-year Urth time. Argues that the required acceleration of about one fiftieth gee and the peak speed near 0.996c show the ramjet alone cannot fit the textual evidence, and suggests the ship later switched to matter-antimatter propulsion. The argument rests on relativistic formulas, CRC handbook constants and the stated trip times, and is posted as a proposal to the list.<div class="labels">proposes · chronology-and-plot-logic · theories: Whorl used a Bussard ramjet with half-and-half acceleration profile; Whorl switched to matter-antimatter drive after reaching 0.90c</div></div><div class="own"><p>Assuming a &quot;Bussard ramjet-style&quot; 1/2 continuous acceleration, 1/2 continuous deceleration flight profile, to calculate the necessary acceleration/deceleration and actual distance covered, the elapsed times were divided in half, as the acceleration and deceleration phases are (ah, so Wolfean!) symmetrical.</p>
+<p>Bruce Bowden, a.k.a. &quot;Dr. Matrix&quot;, has been kind enough to post various forms of the Lorentz equations for relativistic motion on his &quot;Starships of the Mind&quot; website. (scientium.com/essays/startrip/startrip.html)</p>
+<p>Assume a value for {a&#x27;}, the subjective acceleration, and set half the elapsed Urth time {t} to 550 yr. Calculate elapsed subjective time {t&#x27;} for either the accelerating or decelerating leg:</p>
+<p>t&#x27; = c / a&#x27; * arcsinh(a&#x27; t / c)              (*1)</p>
+<p>Keep iteratively adjusting {a&#x27;} until close enough to that value for which {t&#x27;} = 150 yr, half the subjective voyage time. (A process of &quot;relaxation&quot;, if you will)</p>
+<p>Having approximated {a&#x27;}, calculate x, 1/2 the distance to B&amp;G, for either the accelerating or decelerating leg<br>x = c^2 /a&#x27; (cosh(a&#x27;t&#x27;/c) - 1)</p>
+<p>Then peak velocity (at turnover) can be calculated<br>v[peak] = c * sqrt(1- (1/(1 + a&#x27;x/c^2)^2)</p>
+<p>It is of course convenient to perform all the actual calculations in SI units. The following constant values and conversion factors were used.</p>
+<p>c = 299792458 m/s     (*2)<br>1 year = 31556926 s      (*2)(*4)<br>1 parsec = 3.08573 * 10^16m     (*3)<br>1 light-year = 9.46055 * 10^15m     (*3)<br>1 std. gee = 9.80665 m/s^2     (*2)</p>
+<p>Using that most wondrous of software inventions, the spreadsheet    (*5), a value of {a&#x27;} was found, by trial and error, which fulfilled the two elapsed time conditions {t} and {t&#x27;}. Then {d} and {v[peak]} could be directly calculated.</p>
+<p>{a&#x27;} was found to be equal to about 0.02026 gee, which gets you within about a fortnight of exact. And if _that&#x27;s_ not close enough, there&#x27;s no more help, hope, or comfort _I_ can offer you. (especially since {t} and {t&#x27;} aren&#x27;t known to the nearest year anyway).</p>
+<p>Therefore, {d}= 2*{x} was 9.54 * 10^18 meters, or 309 parsecs, or 1008 light-years (as we&#x27;d expect);<br>and {v[peak]} at turnover was 2.99 * 10^8 m/s, or 0.996 c.</p>
+<p>by way of comparison, using 2*{t} = 1000yr,<br>{a&#x27;} ~ .0194 gee, {d} = 277 psc, {v[peak]} = 0.995c.</p>
+<p>The slight acceleration required, about one fiftieth gee, should hardly be noticeable to ordinary Cargo except possibly a few physicists, and it could be that the interior of the Whorl is slightly sloped forward in such a fashion as to compensate. Perhaps the &quot;mountains&quot; which divide segments of _Whorl&#x27;s_ interior longitudinally (_Exodus_ ch 15) are actually escarpments at the edges of sections tilted slightly forward (&quot;eastward&quot;)?</p>
+<p>Of course, presumably &quot;turnaround&quot; took place some 180 years prior to the events in BLS; were any strange perturbations in _Whorl&#x27;s_ perceived gravity noticed by the Cargo at that time, and recorded in history, as the starcrosser executed its maneuver? Unfortunately, there are no indications in the text that I could find.</p>
+<p>The Bussard Ramjet, unfortunately, has one glaring limitation, provided you grant that they and their vast &quot;ramscoops&quot; are even possible. A Bussard ramjet&#x27;s terminal velocity is said to limited by the resistance of the interstellar gas against the ramscoop to about 0.90 c. This unfortunately limits the maximum time dilation to about 40%, and the effective actual time dilation, given that the Whorl had to gradually accelerate and then decelerate, to quite a bit less; i.e. subjective trip time had to be well over 400 years minimum. That just isn&#x27;t going to fit well with the textual evidence.</p>
+<p>Perhaps the starcrosser reached 0.90 c using Bussard ramjets, and then accelerated without the ramscoop using matter-antimatter annihilation.</p>
+<p>Notes:<br>(*1) Note my &quot;spreadsheet style&quot; notation: ^ is of course an exponent operator. Since ASCII includes no radical sign, the FOTRAN-like pseudo-function &quot;sqrt&quot; is used to indicate a square root. (*2) source: CRC Handbook of Chemistry, 63rd ed.<br>(*3) source: CRC Mathematical Tables, 26th ed.<br>(*4) standard 20th century Earth year used in satellite orbit calculations. Possibly the second weakest assumption in the whole analysis, after the value of {t}.<br>(*5) &quot;Excel&quot;, ported with enormous trouble from your &quot;Very Small-Pliable Portals&quot; environment to that of the great thinking engine that allows me to communicate down the Corridors of Time with your Internet. The thinking engine now reports an overwhelming urge to display an endless blue expanse then lapse into a comatose state. Furthermore, it has generated a most annoying aquastor that appears to be a piece of bent wire with eyes.</p>
+<p>The Mad Exultant with red eyes.</p>
+<p>*This is WHORL, for discussion of Gene Wolfe&#x27;s Book of the Long Sun.</p></div><details class="full" data-pagefind-ignore><summary>Whole message, with quotes · <a href="https://urth.net/whorl/archives/v0012/0915.shtml">original</a></summary><pre>Assuming a &quot;Bussard ramjet-style&quot; 1/2 continuous acceleration, 1/2
+continuous deceleration flight profile, to calculate the necessary
+acceleration/deceleration and actual distance covered, the elapsed times
+were divided in half, as the acceleration and deceleration phases are (ah,
+so Wolfean!) symmetrical.
+
+Bruce Bowden, a.k.a. &quot;Dr. Matrix&quot;, has been kind enough to post various
+forms of the Lorentz equations for relativistic motion on his &quot;Starships of
+the Mind&quot; website. (scientium.com/essays/startrip/startrip.html)
+
+Assume a value for {a&#x27;}, the subjective acceleration, and set half the
+elapsed Urth time {t} to 550 yr. Calculate elapsed subjective time {t&#x27;} for
+either the accelerating or decelerating leg:
+
+t&#x27; = c / a&#x27; * arcsinh(a&#x27; t / c)              (*1)
+
+Keep iteratively adjusting {a&#x27;} until close enough to that value for which
+{t&#x27;} = 150 yr, half the subjective voyage time. (A process of &quot;relaxation&quot;,
+if you will)
+
+Having approximated {a&#x27;}, calculate x, 1/2 the distance to B&amp;G, for either
+the accelerating or decelerating leg
+x = c^2 /a&#x27; (cosh(a&#x27;t&#x27;/c) - 1)
+
+Then peak velocity (at turnover) can be calculated
+v[peak] = c * sqrt(1- (1/(1 + a&#x27;x/c^2)^2)
+
+It is of course convenient to perform all the actual calculations in SI
+units. The following constant values and conversion factors were used.
+
+c = 299792458 m/s     (*2)
+1 year = 31556926 s      (*2)(*4)
+1 parsec = 3.08573 * 10^16m     (*3)
+1 light-year = 9.46055 * 10^15m     (*3)
+1 std. gee = 9.80665 m/s^2     (*2)
+
+Using that most wondrous of software inventions, the spreadsheet    (*5), a
+value of {a&#x27;} was found, by trial and error, which fulfilled the two elapsed
+time conditions {t} and {t&#x27;}. Then {d} and {v[peak]} could be directly
+calculated.
+
+{a&#x27;} was found to be equal to about 0.02026 gee, which gets you within about
+a fortnight of exact. And if _that&#x27;s_ not close enough, there&#x27;s no more
+help, hope, or comfort _I_ can offer you. (especially since {t} and {t&#x27;}
+aren&#x27;t known to the nearest year anyway).
+
+Therefore, {d}= 2*{x} was 9.54 * 10^18 meters, or 309 parsecs, or 1008
+light-years (as we&#x27;d expect);
+and {v[peak]} at turnover was 2.99 * 10^8 m/s, or 0.996 c.
+
+by way of comparison, using 2*{t} = 1000yr,
+{a&#x27;} ~ .0194 gee, {d} = 277 psc, {v[peak]} = 0.995c.
+
+The slight acceleration required, about one fiftieth gee, should hardly be
+noticeable to ordinary Cargo except possibly a few physicists, and it could
+be that the interior of the Whorl is slightly sloped forward in such a
+fashion as to compensate. Perhaps the &quot;mountains&quot; which divide segments of
+_Whorl&#x27;s_ interior longitudinally (_Exodus_ ch 15) are actually escarpments
+at the edges of sections tilted slightly forward (&quot;eastward&quot;)?
+
+Of course, presumably &quot;turnaround&quot; took place some 180 years prior to the
+events in BLS; were any strange perturbations in _Whorl&#x27;s_ perceived gravity
+noticed by the Cargo at that time, and recorded in history, as the
+starcrosser executed its maneuver? Unfortunately, there are no indications
+in the text that I could find.
+
+The Bussard Ramjet, unfortunately, has one glaring limitation, provided you
+grant that they and their vast &quot;ramscoops&quot; are even possible. A Bussard
+ramjet&#x27;s terminal velocity is said to limited by the resistance of the
+interstellar gas against the ramscoop to about 0.90 c. This unfortunately
+limits the maximum time dilation to about 40%, and the effective actual time
+dilation, given that the Whorl had to gradually accelerate and then
+decelerate, to quite a bit less; i.e. subjective trip time had to be well
+over 400 years minimum. That just isn&#x27;t going to fit well with the textual
+evidence.
+
+Perhaps the starcrosser reached 0.90 c using Bussard ramjets, and then
+accelerated without the ramscoop using matter-antimatter annihilation.
+
+Notes:
+(*1) Note my &quot;spreadsheet style&quot; notation: ^ is of course an exponent
+operator. Since ASCII includes no radical sign, the FOTRAN-like
+pseudo-function &quot;sqrt&quot; is used to indicate a square root.
+(*2) source: CRC Handbook of Chemistry, 63rd ed.
+(*3) source: CRC Mathematical Tables, 26th ed.
+(*4) standard 20th century Earth year used in satellite orbit calculations.
+Possibly the second weakest assumption in the whole analysis, after the
+value of {t}.
+(*5) &quot;Excel&quot;, ported with enormous trouble from your &quot;Very Small-Pliable
+Portals&quot; environment to that of the great thinking engine that allows me to
+communicate down the Corridors of Time with your Internet. The thinking
+engine now reports an overwhelming urge to display an endless blue expanse
+then lapse into a comatose state. Furthermore, it has generated a most
+annoying aquastor that appears to be a piece of bent wire with eyes.
+
+The Mad Exultant with red eyes.
+
+
+
+*This is WHORL, for discussion of Gene Wolfe&#x27;s Book of the Long Sun.
+*More Wolfe info &amp; archive of this list at http://www.moonmilk.com/whorl/
+*To leave the list, send &quot;unsubscribe&quot; to [email]
+*If it&#x27;s Wolfe but not Long Sun, please use the URTH list: [email]
+
+
+
+
+&lt;hr width=70%&gt;
+&lt;!-- ---- placeholder ---- --&gt;</pre></details></section>
+</main>
+<footer data-pagefind-ignore><p>Posts © their authors. Archives: <a href="https://urth.net/">urth.net</a> (1996-2003)
+and <a href="https://archive.org/details/urth-discussion-of-the-works-of-gene-wolfe">archive.org</a> (2004-2023).
+Summaries and labels are machine-written and can be wrong; the posts themselves are the record.</p></footer>
+</body></html>

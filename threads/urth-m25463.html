@@ -1,0 +1,438 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Memento Mori, Re: This Week in Google Alerts: conference, sketch · Urth List Index</title><meta name="robots" content="noindex, nofollow">
+<link rel="stylesheet" href="../assets/style.css">
+</head><body>
+<div class="private-banner">Temporary preview of the Urth List Index, shared privately. Please do not pass the link on.</div>
+<header class="site" data-pagefind-ignore><a class="brand" href="../index.html">Urth List Index</a><nav><a href="../index.html">Home</a><a href="../years/index.html">Years</a><a href="../people/index.html">People</a><a href="../names/index.html">Names</a><a href="../chapters/index.html">Chapters</a><a href="../themes/index.html">Themes</a><a href="../theories/index.html">Theories</a><a href="../search.html">Search</a><a href="../about.html">About</a></nav></header>
+<main data-pagefind-body>
+<h1 data-pagefind-meta="title">Memento Mori, Re: This Week in Google Alerts: conference, sketch</h1>
+<p class="meta">Urth list · 5 messages · 2014-07-13 to 2014-07-13</p>
+<span data-pagefind-filter="year" hidden>2014</span><span data-pagefind-filter="list" hidden>urth</span><span data-pagefind-filter="poster" hidden>Gwern Branwen</span><span data-pagefind-filter="poster" hidden>Marc Aramini</span><span data-pagefind-filter="poster" hidden>Antonin Scriabin</span>
+<div class="card" data-pagefind-ignore><strong>The thread:</strong> A brief Urth thread prompted by a mournful analysis of Rosemary began with Gwern Branwen urging readers to contact Gene Wolfe soon, citing actuarial tables on his age. Marc Aramini then shared personal anecdotes about meeting Wolfe at award events, including the Nebula Awards where Wolfe was named Grandmaster, and drifted into chat about boxing and SF fandom. Antonin Scriabin replied with a personal note about mood and well-wishes for Wolfe. No interpretive debate about the books emerged, and the thread ended in drift into personal reminiscence rather than argument.<ul class=positions><li>Gwern Branwen: readers should contact Wolfe soon given his age and mortality odds</li><li>Marc Aramini: fond personal memories of meeting Wolfe at awards; SF fandom feels close-knit</li><li>Antonin Scriabin: offers personal reflections and well-wishes for Wolfe</li></ul></div>
+<p class="meta" data-pagefind-ignore>Themes: <a href="../themes/mirrors-art.html">Mirrors, pictures and art</a></p>
+<section class="msg"><h3 id="urth-m25463"><span class="date">2014-07-13</span> <a href="../people/gwern-branwen.html">Gwern Branwen</a> <a class="self" href="#urth-m25463" title="link to this message" data-pagefind-ignore>#</a></h3><div class="card" data-pagefind-ignore>Urges readers to contact Gene Wolfe soon, such as by sending fanmail, seeking an autograph, or attending an event, because of his age. Supports the case with actuarial calculations from SSA mortality tables, showing rising risk of death at age 83 and beyond and the chance he survives to later ages.<div class="labels">proposes · close-textual-reading</div></div><div class="own"><p>By the way, I know how easy it is to let time slip by and never get around to doing something you always intended to do but never quite got around to. If you want to write fanmail, see Wolfe in the flesh, get an autograph for a book, perhaps buy an autographed special edition etc, you should do so soon. As soon as possible.</p>
+<p>It will sound morbid to point this out, but the odds are not good for Wolfe surviving too many more years, and if you pass up opportunities you may well discover you passed up your last such opportunity. List members may not have much experience with how elderly people can abruptly decline and die, or how mortality exponential increases over time in the Gompertz curve, so here&#x27;s some numerical calculations from SSA actuarial tables.</p>
+<p>https://en.wikipedia.org/wiki/Gene_Wolfe tell us that Wolfe is now age 83. http://www.ssa.gov/oact/STATS/table4c6.html 83: instantaneous risk of death that year, 0.083230 or 8.3%; remaining life expectancy: 6.66 years.</p>
+<p>Over the next 7 years, each year an American male&#x27;s risk of death is:</p>
+<p>- 83: 0.083230 (8%)<br>- 84: 0.091933 (9%)<br>- 85: 0.101625 (10%)<br>- 86: 0.112448 (11%)<br>- 87: 0.124502 (12%)<br>- 88: 0.137837 (14%)<br>- 89: 0.152458 (15%)<br>- 90: 0.168352 (17%)<br>- 91: 0.185486 (19%)<br>- 92: 0.203817 (20%)<br>- 93: 0.223298 (22%)</p>
+<p>Risk increases dramatically each year, and since that&#x27;s just the risk each year, the cumulative risk increases even more dramatically. This is why despite billions of people on earth, only one person (Jeanne Calment) has survived to 122 years (and the record age has actually fallen steadily ever since).</p>
+<p>The probability of surviving to a particular age is the conjunction of each negated risk (since you have to not die in each previous year); so to survive to 84, one has to beat 1 * (1-0.083230) = 0.9168, and to survive to 85, one has to beat 1 * (1-0.083230) * (1-0.091933) = 0.8325, and so on. It&#x27;s easy to automate the calculation up to age 93 in Haskell:</p>
+<p>    ghci&gt; scanl (*) 1 $ map (1-) [0.083230, 0.091933, 0.101625, 0.112448, 0.124502, 0.137837, 0.152458, 0.168352, 0.185486, 0.203817, 0.223298]<br>          ~&gt;<br>             [1.0,0.91677,0.8324885835899999,0.7478869312826661,0.6637885416337929,0.5811455406233024,0.5010421827404082,0.42465429364417107,               0.35316289400058754,0.28765612144399455,0.2290269137396439,0.1778856619554089]</p>
+<p>Or, the probability an American male (like Gene Wolfe) will survive to a specified age, having survived to age 83, is:</p>
+<p>- 1y, 84: 92%<br>- 2y, 85: 83% (4/5)<br>- 3y, 86: 75% (3/4)<br>- 4y, 87: 66% (2/3)<br>- 5y, 88: 58%<br>- 6y, 89: 50% (coin flip)<br>- 7y, 90: 42%<br>- 8y, 91: 35% (1/3)<br>- 9y, 92: 29%<br>- 10y, 93: 23% (1/5)<br>- 11y, 94: 18%</p>
+<p>These figures are population-wide averages, which don&#x27;t take into account individual circumstances. On the positive side, Wolfe is high-status and has received many honors and can look back on a sterling writing career with great satisfaction; on the negative, Wolfe has lost his wife recently, which is a well-known risk factor for men, is not in perfect health, and may be overweight. On net, I&#x27;d say these figures are underestimates.</p>
+<p>So, this implies that if you pass up an opportunity this year in favor of next year, there&#x27;s a &gt;10% chance Wolfe will be permanently delayed; if you wait 2 years, ~20%, 3 years, 25%, and so on. These are not negligible risks.</p></div><details class="full" data-pagefind-ignore><summary>Whole message, with quotes · <a href="https://archive.org/download/urth-discussion-of-the-works-of-gene-wolfe/URTH%20Discussion%20of%20the%20works%20of%20Gene%20Wolfe.zip/content%2Foutput%2Furth-urth.net%2Fmsg25463.html">original</a></summary><pre>On Mon, Jun 30, 2014 at 12:47 PM, Gwern Branwen &lt;[email]&gt; wrote:
+&gt; - Via http://www.patheos.com/blogs/jenniferfitz/2014/06/should-you-be-writing-right-now-and-what-about-the-kids-and-what-about-a-conference-this-summer/
+&gt; , http://www.christiannewswire.com/news/9005474225.html &quot;Prominent
+&gt; Catholic Writers to Speak at Catholic Writers Conference in Chicago
+&gt; Area&quot;:
+
+By the way, I know how easy it is to let time slip by and never get
+around to doing something you always intended to do but never quite
+got around to. If you want to write fanmail, see Wolfe in the flesh,
+get an autograph for a book, perhaps buy an autographed special
+edition etc, you should do so soon. As soon as possible.
+
+It will sound morbid to point this out, but the odds are not good for
+Wolfe surviving too many more years, and if you pass up opportunities
+you may well discover you passed up your last such opportunity. List
+members may not have much experience with how elderly people can
+abruptly decline and die, or how mortality exponential increases over
+time in the Gompertz curve, so here&#x27;s some numerical calculations from
+SSA actuarial tables.
+
+https://en.wikipedia.org/wiki/Gene_Wolfe tell us that Wolfe is now age
+83. http://www.ssa.gov/oact/STATS/table4c6.html 83: instantaneous risk
+of death that year, 0.083230 or 8.3%; remaining life expectancy: 6.66
+years.
+
+Over the next 7 years, each year an American male&#x27;s risk of death is:
+
+- 83: 0.083230 (8%)
+- 84: 0.091933 (9%)
+- 85: 0.101625 (10%)
+- 86: 0.112448 (11%)
+- 87: 0.124502 (12%)
+- 88: 0.137837 (14%)
+- 89: 0.152458 (15%)
+- 90: 0.168352 (17%)
+- 91: 0.185486 (19%)
+- 92: 0.203817 (20%)
+- 93: 0.223298 (22%)
+
+Risk increases dramatically each year, and since that&#x27;s just the risk
+each year, the cumulative risk increases even more dramatically. This
+is why despite billions of people on earth, only one person (Jeanne
+Calment) has survived to 122 years (and the record age has actually
+fallen steadily ever since).
+
+The probability of surviving to a particular age is the conjunction of
+each negated risk (since you have to not die in each previous year);
+so to survive to 84, one has to beat 1 * (1-0.083230) = 0.9168, and to
+survive to 85, one has to beat 1 * (1-0.083230) * (1-0.091933) =
+0.8325, and so on. It&#x27;s easy to automate the calculation up to age 93
+in Haskell:
+
+    ghci&gt; scanl (*) 1 $ map (1-) [0.083230, 0.091933, 0.101625,
+0.112448, 0.124502, 0.137837, 0.152458, 0.168352, 0.185486, 0.203817,
+0.223298]
+          ~&gt;
+             [1.0,0.91677,0.8324885835899999,0.7478869312826661,0.6637885416337929,0.5811455406233024,0.5010421827404082,0.42465429364417107,
+              0.35316289400058754,0.28765612144399455,0.2290269137396439,0.1778856619554089]
+
+Or, the probability an American male (like Gene Wolfe) will survive to
+a specified age, having survived to age 83, is:
+
+- 1y, 84: 92%
+- 2y, 85: 83% (4/5)
+- 3y, 86: 75% (3/4)
+- 4y, 87: 66% (2/3)
+- 5y, 88: 58%
+- 6y, 89: 50% (coin flip)
+- 7y, 90: 42%
+- 8y, 91: 35% (1/3)
+- 9y, 92: 29%
+- 10y, 93: 23% (1/5)
+- 11y, 94: 18%
+
+These figures are population-wide averages, which don&#x27;t take into
+account individual circumstances. On the positive side, Wolfe is
+high-status and has received many honors and can look back on a
+sterling writing career with great satisfaction; on the negative,
+Wolfe has lost his wife recently, which is a well-known risk factor
+for men, is not in perfect health, and may be overweight. On net, I&#x27;d
+say these figures are underestimates.
+
+So, this implies that if you pass up an opportunity this year in favor
+of next year, there&#x27;s a &gt;10% chance Wolfe will be permanently delayed;
+if you wait 2 years, ~20%, 3 years, 25%, and so on. These are not
+negligible risks.
+
+-- 
+gwern
+http://www.gwern.net</pre></details></section>
+<section class="msg"><h3 id="urth-m25464"><span class="date">2014-07-13</span> <a href="../people/marc-aramini.html">Marc Aramini</a> <span class="meta">replying to <a href="#urth-m25463">Gwern Branwen</a></span> <a class="self" href="#urth-m25464" title="link to this message" data-pagefind-ignore>#</a></h3><div class="card" data-pagefind-ignore>Shares a personal memory of meeting Gene Wolfe at an award event and telling him he was a childhood hero, prompted by a thread about a mournful analysis of Rosemary. Recounts that they met again at the Nebula awards the next year when Wolfe was named Grandmaster, and links a photo from the Fuller award.<div class="labels">informs</div></div><div class="own"><p>The stressful and long decline of rosemary is concerning. This might be the most depressing analysis ever undertaken on urth list.  I have felt myself to be very fortunate in my childhood heroes.  I am so grateful that my time and Gene&#x27;s just happened to overlap significantly.</p>
+<p>There&#x27;s a picture at the Fuller award I didn&#x27;t know was taken at the time, where, for the many kindnesses he showed me, thinking we were mostly alone,  I told him that I loved him, and he would always be my hero, thinking I would never see him again.  Then the nebulas were in California the very next year, and Gene named grandmaster, so it proved to not be the last time.</p>
+<p>http://i213.photobucket.com/albums/cc282/maramini/Mobile%20Uploads/image_zps379db714.jpg</p></div><details class="full" data-pagefind-ignore><summary>Whole message, with quotes · <a href="https://archive.org/download/urth-discussion-of-the-works-of-gene-wolfe/URTH%20Discussion%20of%20the%20works%20of%20Gene%20Wolfe.zip/content%2Foutput%2Furth-urth.net%2Fmsg25464.html">original</a></summary><pre>The stressful and long decline of rosemary is concerning. This might be the
+most depressing analysis ever undertaken on urth list.  I have felt myself
+to be very fortunate in my childhood heroes.  I am so grateful that my time
+and Gene&#x27;s just happened to overlap significantly.
+
+There&#x27;s a picture at the Fuller award I didn&#x27;t know was taken at the time,
+where, for the many kindnesses he showed me, thinking we were mostly
+alone,  I told him that I loved him, and he would always be my hero,
+thinking I would never see him again.  Then the nebulas were in California
+the very next year, and Gene named grandmaster, so it proved to not be the
+last time.
+
+http://i213.photobucket.com/albums/cc282/maramini/Mobile%20Uploads/image_zps379db714.jpg
+
+
+On Sunday, July 13, 2014, Gwern Branwen &lt;[email]&gt; wrote:
+
+&gt; On Mon, Jun 30, 2014 at 12:47 PM, Gwern Branwen &lt;[email]
+&gt; &lt;javascript:;&gt;&gt; wrote:
+&gt; &gt; - Via
+&gt; http://www.patheos.com/blogs/jenniferfitz/2014/06/should-you-be-writing-right-now-and-what-about-the-kids-and-what-about-a-conference-this-summer/
+&gt; &gt; , http://www.christiannewswire.com/news/9005474225.html &quot;Prominent
+&gt; &gt; Catholic Writers to Speak at Catholic Writers Conference in Chicago
+&gt; &gt; Area&quot;:
+&gt;
+&gt; By the way, I know how easy it is to let time slip by and never get
+&gt; around to doing something you always intended to do but never quite
+&gt; got around to. If you want to write fanmail, see Wolfe in the flesh,
+&gt; get an autograph for a book, perhaps buy an autographed special
+&gt; edition etc, you should do so soon. As soon as possible.
+&gt;
+&gt; It will sound morbid to point this out, but the odds are not good for
+&gt; Wolfe surviving too many more years, and if you pass up opportunities
+&gt; you may well discover you passed up your last such opportunity. List
+&gt; members may not have much experience with how elderly people can
+&gt; abruptly decline and die, or how mortality exponential increases over
+&gt; time in the Gompertz curve, so here&#x27;s some numerical calculations from
+&gt; SSA actuarial tables.
+&gt;
+&gt; https://en.wikipedia.org/wiki/Gene_Wolfe tell us that Wolfe is now age
+&gt; 83. http://www.ssa.gov/oact/STATS/table4c6.html 83: instantaneous risk
+&gt; of death that year, 0.083230 or 8.3%; remaining life expectancy: 6.66
+&gt; years.
+&gt;
+&gt; Over the next 7 years, each year an American male&#x27;s risk of death is:
+&gt;
+&gt; - 83: 0.083230 (8%)
+&gt; - 84: 0.091933 (9%)
+&gt; - 85: 0.101625 (10%)
+&gt; - 86: 0.112448 (11%)
+&gt; - 87: 0.124502 (12%)
+&gt; - 88: 0.137837 (14%)
+&gt; - 89: 0.152458 (15%)
+&gt; - 90: 0.168352 (17%)
+&gt; - 91: 0.185486 (19%)
+&gt; - 92: 0.203817 (20%)
+&gt; - 93: 0.223298 (22%)
+&gt;
+&gt; Risk increases dramatically each year, and since that&#x27;s just the risk
+&gt; each year, the cumulative risk increases even more dramatically. This
+&gt; is why despite billions of people on earth, only one person (Jeanne
+&gt; Calment) has survived to 122 years (and the record age has actually
+&gt; fallen steadily ever since).
+&gt;
+&gt; The probability of surviving to a particular age is the conjunction of
+&gt; each negated risk (since you have to not die in each previous year);
+&gt; so to survive to 84, one has to beat 1 * (1-0.083230) = 0.9168, and to
+&gt; survive to 85, one has to beat 1 * (1-0.083230) * (1-0.091933) =
+&gt; 0.8325, and so on. It&#x27;s easy to automate the calculation up to age 93
+&gt; in Haskell:
+&gt;
+&gt;     ghci&gt; scanl (*) 1 $ map (1-) [0.083230, 0.091933, 0.101625,
+&gt; 0.112448, 0.124502, 0.137837, 0.152458, 0.168352, 0.185486, 0.203817,
+&gt; 0.223298]
+&gt;           ~&gt;
+&gt;
+&gt;  [1.0,0.91677,0.8324885835899999,0.7478869312826661,0.6637885416337929,0.5811455406233024,0.5010421827404082,0.42465429364417107,
+&gt;
+&gt; 0.35316289400058754,0.28765612144399455,0.2290269137396439,0.1778856619554089]
+&gt;
+&gt; Or, the probability an American male (like Gene Wolfe) will survive to
+&gt; a specified age, having survived to age 83, is:
+&gt;
+&gt; - 1y, 84: 92%
+&gt; - 2y, 85: 83% (4/5)
+&gt; - 3y, 86: 75% (3/4)
+&gt; - 4y, 87: 66% (2/3)
+&gt; - 5y, 88: 58%
+&gt; - 6y, 89: 50% (coin flip)
+&gt; - 7y, 90: 42%
+&gt; - 8y, 91: 35% (1/3)
+&gt; - 9y, 92: 29%
+&gt; - 10y, 93: 23% (1/5)
+&gt; - 11y, 94: 18%
+&gt;
+&gt; These figures are population-wide averages, which don&#x27;t take into
+&gt; account individual circumstances. On the positive side, Wolfe is
+&gt; high-status and has received many honors and can look back on a
+&gt; sterling writing career with great satisfaction; on the negative,
+&gt; Wolfe has lost his wife recently, which is a well-known risk factor
+&gt; for men, is not in perfect health, and may be overweight. On net, I&#x27;d
+&gt; say these figures are underestimates.
+&gt;
+&gt; So, this implies that if you pass up an opportunity this year in favor
+&gt; of next year, there&#x27;s a &gt;10% chance Wolfe will be permanently delayed;
+&gt; if you wait 2 years, ~20%, 3 years, 25%, and so on. These are not
+&gt; negligible risks.
+&gt;
+&gt; --
+&gt; gwern
+&gt; http://www.gwern.net
+&gt; _______________________________________________
+&gt; Urth Mailing List
+&gt; To post, write [email] &lt;javascript:;&gt;
+&gt; Subscription/information: http://www.urth.net
+&gt;
+-------------- next part --------------
+An HTML attachment was scrubbed...
+URL: &lt;http://lists.urth.net/pipermail/urth-urth.net/attachments/20140713/64c18cc1/attachment.htm&gt;</pre></details></section>
+<section class="msg"><h3 id="urth-m25466"><span class="date">2014-07-13</span> <a href="../people/marc-aramini.html">Marc Aramini</a> <span class="meta">replying to <a href="#urth-m25464">Marc Aramini</a></span> <a class="self" href="#urth-m25466" title="link to this message" data-pagefind-ignore>#</a></h3><div class="card" data-pagefind-ignore>Recounts the poster&#x27;s experiences at the Nebula Awards, meeting and chatting with science fiction writers and reflecting on the closeness SF fandom offers compared with other popular entertainment. Mentions no Wolfe text or interpretive claim; it is a personal anecdote about attending the conference and the Fuller Ceremony.<div class="labels">chats</div></div><div class="own"><p>Of course, I am a Wolfe fan first and an SF one second (or third) but even though I preferred the Fuller Ceremony because it was all about Gene, I can&#x27;t recommend the Nebula Awards highly enough.  The panels in memory of the SF greats are astonishingly informative - you get to hear people talk who knew guys like Bradbury or pretty much every Golden Age SF writer working in the beginning and mid 20th centuries as well as meet some of the new faces.  I sat at dinner with Connie Willis, chatted with Joe Haldeman as he wrote, had Robert Silverberg ask to pet my dog, sat at a panel where the guy who wrote Logan&#x27;s Run and other SF screenplays talked about the construction of so many of the classic movies and moments in SF ... SF fandom is truly special for that. (How many times have I, frustrated at elderly drivers or shoppers in Arizona, quipped about Logan&#x27;s Run?  And there sitting at the front of the room was the man who provided the punchline for my least humanitarian nastiness).  When I was a child I got to meet Jack Williamson - he lived about 30 minutes away from me, and I curse the foolishness that did not lead me to seek out Roger Zelazny while he was living in Santa Fe, mere hours away, though I was a fan of his by the 4th grade.  I feel like fans of truly popular entertainment are cheated of this closeness.  When I saw my name in the SFWA directory, with my address and phone number next to the addresses and phone numbers of most of the authors I had grown up reading, it was an ethereal and impossible feeling.  Most of the other famous personages throughout history are lost in antiquity, forever inaccessible to us, or others are so overwhelmed with inexplicable and mostly unwarranted fame (actors? golfers? really?) that they are unapproachable.</p></div><details class="full" data-pagefind-ignore><summary>Whole message, with quotes · <a href="https://archive.org/download/urth-discussion-of-the-works-of-gene-wolfe/URTH%20Discussion%20of%20the%20works%20of%20Gene%20Wolfe.zip/content%2Foutput%2Furth-urth.net%2Fmsg25466.html">original</a></summary><pre>Of course, I am a Wolfe fan first and an SF one second (or third) but even
+though I preferred the Fuller Ceremony because it was all about Gene, I
+can&#x27;t recommend the Nebula Awards highly enough.  The panels in memory of
+the SF greats are astonishingly informative - you get to hear people talk
+who knew guys like Bradbury or pretty much every Golden Age SF writer
+working in the beginning and mid 20th centuries as well as meet some of the
+new faces.  I sat at dinner with Connie Willis, chatted with Joe Haldeman
+as he wrote, had Robert Silverberg ask to pet my dog, sat at a panel where
+the guy who wrote Logan&#x27;s Run and other SF screenplays talked about the
+construction of so many of the classic movies and moments in SF ... SF
+fandom is truly special for that. (How many times have I, frustrated at
+elderly drivers or shoppers in Arizona, quipped about Logan&#x27;s Run?  And
+there sitting at the front of the room was the man who provided the
+punchline for my least humanitarian nastiness).  When I was a child I got
+to meet Jack Williamson - he lived about 30 minutes away from me, and I
+curse the foolishness that did not lead me to seek out Roger Zelazny while
+he was living in Santa Fe, mere hours away, though I was a fan of his by
+the 4th grade.  I feel like fans of truly popular entertainment are cheated
+of this closeness.  When I saw my name in the SFWA directory, with my
+address and phone number next to the addresses and phone numbers of most of
+the authors I had grown up reading, it was an ethereal and impossible
+feeling.  Most of the other famous personages throughout history are lost
+in antiquity, forever inaccessible to us, or others are so overwhelmed with
+inexplicable and mostly unwarranted fame (actors? golfers? really?) that
+they are unapproachable.
+-------------- next part --------------
+An HTML attachment was scrubbed...
+URL: &lt;http://lists.urth.net/pipermail/urth-urth.net/attachments/20140713/d9d71ffb/attachment.htm&gt;</pre></details></section>
+<section class="msg"><h3 id="urth-m25467"><span class="date">2014-07-13</span> <a href="../people/marc-aramini.html">Marc Aramini</a> <span class="meta">replying to <a href="#urth-m25466">Marc Aramini</a></span> <a class="self" href="#urth-m25467" title="link to this message" data-pagefind-ignore>#</a></h3><div class="card" data-pagefind-ignore>Muses that Las Vegas boxing gyms offer chances to meet famous boxers who are friendly and happy to be recognized, and suggests boxing, like science fiction, has become a niche pursuit. Follows a reply about the Nebula Awards memorial panels by admitting the digression is marginally off topic and that the poster felt bad about an earlier dismissive remark.<div class="labels">chats</div></div><div class="own"><p>Marginally off topic, having said all that and been rather smug in my dismissal of &quot;popular&quot; entertainers, if you hang out in Las Vegas boxing gyms you will meet an amazing number of famous boxers coming through to train or with their proteges, most fairly friendly and accessible and happy to be recognized - the sport must now be something more of a niche thing than it used to be, much as SF probably is. I felt a little bad after I wrote that last sentence below.</p></div><details class="full" data-pagefind-ignore><summary>Whole message, with quotes · <a href="https://archive.org/download/urth-discussion-of-the-works-of-gene-wolfe/URTH%20Discussion%20of%20the%20works%20of%20Gene%20Wolfe.zip/content%2Foutput%2Furth-urth.net%2Fmsg25467.html">original</a></summary><pre>Marginally off topic, having said all that and been rather smug in my
+dismissal of &quot;popular&quot; entertainers, if you hang out in Las Vegas boxing
+gyms you will meet an amazing number of famous boxers coming through to
+train or with their proteges, most fairly friendly and accessible and happy
+to be recognized - the sport must now be something more of a niche thing
+than it used to be, much as SF probably is. I felt a little bad after I
+wrote that last sentence below.
+
+On Sun, Jul 13, 2014 at 4:53 PM, Marc Aramini &lt;[email]&gt; wrote:
+
+&gt;
+&gt; Of course, I am a Wolfe fan first and an SF one second (or third) but even
+&gt; though I preferred the Fuller Ceremony because it was all about Gene, I
+&gt; can&#x27;t recommend the Nebula Awards highly enough.  The panels in memory of
+&gt; the SF greats are astonishingly informative - you get to hear people talk
+&gt; who knew guys like Bradbury or pretty much every Golden Age SF writer
+&gt; working in the beginning and mid 20th centuries as well as meet some of the
+&gt; new faces.  I sat at dinner with Connie Willis, chatted with Joe Haldeman
+&gt; as he wrote, had Robert Silverberg ask to pet my dog, sat at a panel where
+&gt; the guy who wrote Logan&#x27;s Run and other SF screenplays talked about the
+&gt; construction of so many of the classic movies and moments in SF ... SF
+&gt; fandom is truly special for that. (How many times have I, frustrated at
+&gt; elderly drivers or shoppers in Arizona, quipped about Logan&#x27;s Run?  And
+&gt; there sitting at the front of the room was the man who provided the
+&gt; punchline for my least humanitarian nastiness).  When I was a child I got
+&gt; to meet Jack Williamson - he lived about 30 minutes away from me, and I
+&gt; curse the foolishness that did not lead me to seek out Roger Zelazny while
+&gt; he was living in Santa Fe, mere hours away, though I was a fan of his by
+&gt; the 4th grade.  I feel like fans of truly popular entertainment are cheated
+&gt; of this closeness.  When I saw my name in the SFWA directory, with my
+&gt; address and phone number next to the addresses and phone numbers of most of
+&gt; the authors I had grown up reading, it was an ethereal and impossible
+&gt; feeling.  Most of the other famous personages throughout history are lost
+&gt; in antiquity, forever inaccessible to us, or others are so overwhelmed with
+&gt; inexplicable and mostly unwarranted fame (actors? golfers? really?) that
+&gt; they are unapproachable.
+&gt;
+-------------- next part --------------
+An HTML attachment was scrubbed...
+URL: &lt;http://lists.urth.net/pipermail/urth-urth.net/attachments/20140713/af555f13/attachment.htm&gt;</pre></details></section>
+<section class="msg"><h3 id="urth-m25465"><span class="date">2014-07-13</span> <a href="../people/antonin-scriabin.html">Antonin Scriabin</a> <span class="meta">replying to <a href="#urth-m25464">Marc Aramini</a></span> <a class="self" href="#urth-m25465" title="link to this message" data-pagefind-ignore>#</a></h3><div class="card" data-pagefind-ignore>Replies to Marc Aramini&#x27;s analysis of Rosemary&#x27;s long decline by describing the poster&#x27;s own shifting mood, from depression to interest in the math and back, and ending with well-wishes for Gene Wolfe. Responds to Aramini&#x27;s quoted remarks about Rosemary and Wolfe&#x27;s Fuller award photograph; the post offers no critical reading of the books.<div class="labels">chats</div></div><div class="own"><p>At first I was depressed, then I was interested in the math, then I was depressed again, then Marc&#x27;s picture cheered me up. Here&#x27;s to all the best for Gene.</p></div><details class="full" data-pagefind-ignore><summary>Whole message, with quotes · <a href="https://archive.org/download/urth-discussion-of-the-works-of-gene-wolfe/URTH%20Discussion%20of%20the%20works%20of%20Gene%20Wolfe.zip/content%2Foutput%2Furth-urth.net%2Fmsg25465.html">original</a></summary><pre>At first I was depressed, then I was interested in the math, then I was
+depressed again, then Marc&#x27;s picture cheered me up. Here&#x27;s to all the best
+for Gene.
+On Jul 13, 2014 7:22 PM, &quot;Marc Aramini&quot; &lt;[email]&gt; wrote:
+
+&gt; The stressful and long decline of rosemary is concerning. This might be
+&gt; the most depressing analysis ever undertaken on urth list.  I have felt
+&gt; myself to be very fortunate in my childhood heroes.  I am so grateful that
+&gt; my time and Gene&#x27;s just happened to overlap significantly.
+&gt;
+&gt; There&#x27;s a picture at the Fuller award I didn&#x27;t know was taken at the time,
+&gt; where, for the many kindnesses he showed me, thinking we were mostly
+&gt; alone,  I told him that I loved him, and he would always be my hero,
+&gt; thinking I would never see him again.  Then the nebulas were in California
+&gt; the very next year, and Gene named grandmaster, so it proved to not be the
+&gt; last time.
+&gt;
+&gt;
+&gt; http://i213.photobucket.com/albums/cc282/maramini/Mobile%20Uploads/image_zps379db714.jpg
+&gt;
+&gt;
+&gt; On Sunday, July 13, 2014, Gwern Branwen &lt;[email]&gt; wrote:
+&gt;
+&gt;&gt; On Mon, Jun 30, 2014 at 12:47 PM, Gwern Branwen &lt;[email]&gt; wrote:
+&gt;&gt; &gt; - Via
+&gt;&gt; http://www.patheos.com/blogs/jenniferfitz/2014/06/should-you-be-writing-right-now-and-what-about-the-kids-and-what-about-a-conference-this-summer/
+&gt;&gt; &gt; , http://www.christiannewswire.com/news/9005474225.html &quot;Prominent
+&gt;&gt; &gt; Catholic Writers to Speak at Catholic Writers Conference in Chicago
+&gt;&gt; &gt; Area&quot;:
+&gt;&gt;
+&gt;&gt; By the way, I know how easy it is to let time slip by and never get
+&gt;&gt; around to doing something you always intended to do but never quite
+&gt;&gt; got around to. If you want to write fanmail, see Wolfe in the flesh,
+&gt;&gt; get an autograph for a book, perhaps buy an autographed special
+&gt;&gt; edition etc, you should do so soon. As soon as possible.
+&gt;&gt;
+&gt;&gt; It will sound morbid to point this out, but the odds are not good for
+&gt;&gt; Wolfe surviving too many more years, and if you pass up opportunities
+&gt;&gt; you may well discover you passed up your last such opportunity. List
+&gt;&gt; members may not have much experience with how elderly people can
+&gt;&gt; abruptly decline and die, or how mortality exponential increases over
+&gt;&gt; time in the Gompertz curve, so here&#x27;s some numerical calculations from
+&gt;&gt; SSA actuarial tables.
+&gt;&gt;
+&gt;&gt; https://en.wikipedia.org/wiki/Gene_Wolfe tell us that Wolfe is now age
+&gt;&gt; 83. http://www.ssa.gov/oact/STATS/table4c6.html 83: instantaneous risk
+&gt;&gt; of death that year, 0.083230 or 8.3%; remaining life expectancy: 6.66
+&gt;&gt; years.
+&gt;&gt;
+&gt;&gt; Over the next 7 years, each year an American male&#x27;s risk of death is:
+&gt;&gt;
+&gt;&gt; - 83: 0.083230 (8%)
+&gt;&gt; - 84: 0.091933 (9%)
+&gt;&gt; - 85: 0.101625 (10%)
+&gt;&gt; - 86: 0.112448 (11%)
+&gt;&gt; - 87: 0.124502 (12%)
+&gt;&gt; - 88: 0.137837 (14%)
+&gt;&gt; - 89: 0.152458 (15%)
+&gt;&gt; - 90: 0.168352 (17%)
+&gt;&gt; - 91: 0.185486 (19%)
+&gt;&gt; - 92: 0.203817 (20%)
+&gt;&gt; - 93: 0.223298 (22%)
+&gt;&gt;
+&gt;&gt; Risk increases dramatically each year, and since that&#x27;s just the risk
+&gt;&gt; each year, the cumulative risk increases even more dramatically. This
+&gt;&gt; is why despite billions of people on earth, only one person (Jeanne
+&gt;&gt; Calment) has survived to 122 years (and the record age has actually
+&gt;&gt; fallen steadily ever since).
+&gt;&gt;
+&gt;&gt; The probability of surviving to a particular age is the conjunction of
+&gt;&gt; each negated risk (since you have to not die in each previous year);
+&gt;&gt; so to survive to 84, one has to beat 1 * (1-0.083230) = 0.9168, and to
+&gt;&gt; survive to 85, one has to beat 1 * (1-0.083230) * (1-0.091933) =
+&gt;&gt; 0.8325, and so on. It&#x27;s easy to automate the calculation up to age 93
+&gt;&gt; in Haskell:
+&gt;&gt;
+&gt;&gt;     ghci&gt; scanl (*) 1 $ map (1-) [0.083230, 0.091933, 0.101625,
+&gt;&gt; 0.112448, 0.124502, 0.137837, 0.152458, 0.168352, 0.185486, 0.203817,
+&gt;&gt; 0.223298]
+&gt;&gt;           ~&gt;
+&gt;&gt;
+&gt;&gt;  [1.0,0.91677,0.8324885835899999,0.7478869312826661,0.6637885416337929,0.5811455406233024,0.5010421827404082,0.42465429364417107,
+&gt;&gt;
+&gt;&gt; 0.35316289400058754,0.28765612144399455,0.2290269137396439,0.1778856619554089]
+&gt;&gt;
+&gt;&gt; Or, the probability an American male (like Gene Wolfe) will survive to
+&gt;&gt; a specified age, having survived to age 83, is:
+&gt;&gt;
+&gt;&gt; - 1y, 84: 92%
+&gt;&gt; - 2y, 85: 83% (4/5)
+&gt;&gt; - 3y, 86: 75% (3/4)
+&gt;&gt; - 4y, 87: 66% (2/3)
+&gt;&gt; - 5y, 88: 58%
+&gt;&gt; - 6y, 89: 50% (coin flip)
+&gt;&gt; - 7y, 90: 42%
+&gt;&gt; - 8y, 91: 35% (1/3)
+&gt;&gt; - 9y, 92: 29%
+&gt;&gt; - 10y, 93: 23% (1/5)
+&gt;&gt; - 11y, 94: 18%
+&gt;&gt;
+&gt;&gt; These figures are population-wide averages, which don&#x27;t take into
+&gt;&gt; account individual circumstances. On the positive side, Wolfe is
+&gt;&gt; high-status and has received many honors and can look back on a
+&gt;&gt; sterling writing career with great satisfaction; on the negative,
+&gt;&gt; Wolfe has lost his wife recently, which is a well-known risk factor
+&gt;&gt; for men, is not in perfect health, and may be overweight. On net, I&#x27;d
+&gt;&gt; say these figures are underestimates.
+&gt;&gt;
+&gt;&gt; So, this implies that if you pass up an opportunity this year in favor
+&gt;&gt; of next year, there&#x27;s a &gt;10% chance Wolfe will be permanently delayed;
+&gt;&gt; if you wait 2 years, ~20%, 3 years, 25%, and so on. These are not
+&gt;&gt; negligible risks.
+&gt;&gt;
+&gt;&gt; --
+&gt;&gt; gwern
+&gt;&gt; http://www.gwern.net
+&gt;&gt; _______________________________________________
+&gt;&gt; Urth Mailing List
+&gt;&gt; To post, write [email]
+&gt;&gt; Subscription/information: http://www.urth.net
+&gt;&gt;
+&gt;
+&gt; _______________________________________________
+&gt; Urth Mailing List
+&gt; To post, write [email]
+&gt; Subscription/information: http://www.urth.net
+&gt;
+-------------- next part --------------
+An HTML attachment was scrubbed...
+URL: &lt;http://lists.urth.net/pipermail/urth-urth.net/attachments/20140713/930e86bb/attachment-0001.htm&gt;</pre></details></section>
+</main>
+<footer data-pagefind-ignore><p>Posts © their authors. Archives: <a href="https://urth.net/">urth.net</a> (1996-2003)
+and <a href="https://archive.org/details/urth-discussion-of-the-works-of-gene-wolfe">archive.org</a> (2004-2023).
+Summaries and labels are machine-written and can be wrong; the posts themselves are the record.</p></footer>
+</body></html>
